@@ -1,6 +1,7 @@
 # Project folder
 cache/
 **/node_modules/
+package-lock.json
 
 # third-party library
 

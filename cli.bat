@@ -152,6 +152,7 @@ goto end
     docker rm -f css-%PROJECT_NAME%
     docker run -d --rm ^
         -v %cd%\src\html:/usr/share/nginx/html ^
+        -v %cd%\cache\dist:/usr/share/nginx/html/style ^
         -w /usr/share/nginx/html ^
         -p 8080:80 ^
         --name css-%PROJECT_NAME% ^
@@ -203,6 +204,7 @@ goto end
     docker rm -f css-cli-%PROJECT_NAME%
     docker run -ti --rm ^
         -v %cd%\src\style:/app ^
+        -v %cd%\cache\dist:/app/dist ^
         -w /app ^
         --name css-cli-%PROJECT_NAME% ^
         node:20 bash
