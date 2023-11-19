@@ -132,6 +132,7 @@ goto end
     echo Command:
     echo      up                Startup Server.
     echo      down              Close down Server.
+    echo      dev               Startup CSS cli environment.
     echo.
     echo Run 'cli [COMMAND] --help' for more information on a command.
     goto end
@@ -141,7 +142,7 @@ goto end
 @rem ------------------- Command "up" method -------------------
 
 :cli-up
-    echo ^> Startup and into container for develop algorithm
+    echo ^> Startup and into container for develop html
     @rem create cache
     IF NOT EXIST cache (
         mkdir cache
@@ -150,7 +151,7 @@ goto end
     @rem execute container
     docker rm -f css-%PROJECT_NAME%
     docker run -d --rm ^
-        -v %cd%\src:/usr/share/nginx/html ^
+        -v %cd%\src\html:/usr/share/nginx/html ^
         -w /usr/share/nginx/html ^
         -p 8080:80 ^
         --name css-%PROJECT_NAME% ^
@@ -184,6 +185,36 @@ goto end
 :cli-down-help
     echo This is a Command Line Interface with project %PROJECT_NAME%
     echo Close down Server
+    echo.
+    echo Options:
+    echo      --help, -h        Show more information with UP Command.
+    goto end
+
+@rem ------------------- Command "dev" method -------------------
+
+:cli-dev
+    echo ^> Startup and into container for develop css
+    @rem create cache
+    IF NOT EXIST cache (
+        mkdir cache
+    )
+
+    @rem execute container
+    docker rm -f css-cli-%PROJECT_NAME%
+    docker run -ti --rm ^
+        -v %cd%\src\style:/app ^
+        -w /app ^
+        --name css-cli-%PROJECT_NAME% ^
+        node:20 bash
+
+    goto end
+
+:cli-dev-args
+    goto end
+
+:cli-dev-help
+    echo This is a Command Line Interface with project %PROJECT_NAME%
+    echo Startup CSS cli environment
     echo.
     echo Options:
     echo      --help, -h        Show more information with UP Command.
