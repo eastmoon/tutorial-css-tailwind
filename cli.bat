@@ -204,6 +204,7 @@ goto end
     docker rm -f css-cli-%PROJECT_NAME%
     docker run -ti --rm ^
         -v %cd%\src\style:/app ^
+        -v %cd%\src\html:/app/html ^
         -v %cd%\cache\dist:/app/dist ^
         -w /app ^
         --name css-cli-%PROJECT_NAME% ^
