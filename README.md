@@ -5,6 +5,24 @@ Cascading Style Sheets ( CSS ) framework Tailwind training and demo.
 
 ## Develop CLI
 
+### 啟動與關閉測試環境
+
++ ```cli up```：啟動測試環境
++ ```cli down```：關閉測試環境
+
+測試環境是一個 Nginx 容器，並將 ```src/html``` 與 ```cache/dist``` 目錄掛載於 ```/usr/share/nginx/html``` 下方，以便於開啟網址驗證輸出結果：
+
++ 主頁面：http://localhost:8080/
++ CDN 測試主頁：http://localhost:8080/cdn.html
++ CLI 測試主頁：http://localhost:8080/cli.html
+
+### 編譯 Twailwind CSS 檔案
+
++ ```cli dev```：啟動編譯環境
+    - ```npm run build```：執行編譯 CSS 檔案，其輸出會放置在 ```cache/dist```
+
+不同於 CDN 是將整份 Twailwind CSS 檔案抓取，編譯是將 HTML、JavaScript 檔案有參考的類別彙整於一個輸出 CSS 檔案，並提供給頁面引用。
+
 ## Style Framework design
 
 + Layout
