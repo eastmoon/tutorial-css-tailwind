@@ -57,3 +57,6 @@ Cascading Style Sheets ( CSS ) framework Tailwind training and demo.
     - [Get started with Tailwind CSS](https://tailwindcss.com/docs/installation)
 + 教學文章與範例專案
     - [2023 Top 5 CSS Frameworks for Developers and Designers](https://www.browserstack.com/guide/top-css-frameworks)
+    - [還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！](https://5xcampus.com/posts/tailwind-css-plugin)
+    - [淺談 Atomic CSS 的發展背景與 Tailwind CSS](https://blog.huli.tw/2022/05/23/atomic-css-and-tailwind-css/)
+    - [Tailwind CSS 大全](https://powerkaifu.github.io/2020/09/24/lesson-tailwind-css/)
