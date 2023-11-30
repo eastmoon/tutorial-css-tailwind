@@ -132,7 +132,8 @@ goto end
     echo Command:
     echo      up                Startup Server.
     echo      down              Close down Server.
-    echo      dev               Startup CSS cli environment.
+    echo      css               Startup CSS cli environment.
+    echo      app               Startup Application cli environment.
     echo.
     echo Run 'cli [COMMAND] --help' for more information on a command.
     goto end
@@ -152,7 +153,7 @@ goto end
     docker rm -f css-%PROJECT_NAME%
     docker run -d --rm ^
         -v %cd%\src\html:/usr/share/nginx/html ^
-        -v %cd%\cache\dist:/usr/share/nginx/html/style ^
+        -v %cd%\cache\css:/usr/share/nginx/html/style ^
         -w /usr/share/nginx/html ^
         -p 8080:80 ^
         --name css-%PROJECT_NAME% ^
@@ -191,9 +192,9 @@ goto end
     echo      --help, -h        Show more information with UP Command.
     goto end
 
-@rem ------------------- Command "dev" method -------------------
+@rem ------------------- Command "cli" method -------------------
 
-:cli-dev
+:cli-css
     echo ^> Startup and into container for develop css
     @rem create cache
     IF NOT EXIST cache (
@@ -203,21 +204,51 @@ goto end
     @rem execute container
     docker rm -f css-cli-%PROJECT_NAME%
     docker run -ti --rm ^
-        -v %cd%\src\style:/app ^
-        -v %cd%\src\html:/app/html ^
-        -v %cd%\cache\dist:/app/dist ^
+        -v %cd%\src\css\style:/app ^
+        -v %cd%\src\css\html:/app/html ^
+        -v %cd%\cache\css:/app/dist ^
         -w /app ^
         --name css-cli-%PROJECT_NAME% ^
         node:20 bash
 
     goto end
 
-:cli-dev-args
+:cli-css-args
     goto end
 
-:cli-dev-help
+:cli-css-help
     echo This is a Command Line Interface with project %PROJECT_NAME%
     echo Startup CSS cli environment
+    echo.
+    echo Options:
+    echo      --help, -h        Show more information with UP Command.
+    goto end
+
+@rem ------------------- Command "app" method -------------------
+
+:cli-app
+    echo ^> Startup and into container for develop css
+    @rem create cache
+    IF NOT EXIST cache (
+        mkdir cache
+    )
+
+    @rem execute container
+    docker rm -f css-cli-%PROJECT_NAME%
+    docker run -ti --rm ^
+        -v %cd%\src\app:/app ^
+        -w /app ^
+        --name css-app-%PROJECT_NAME% ^
+        node:20 bash
+
+    goto end
+
+:cli-app-args
+    goto end
+
+:cli-app-help
+    echo This is a Command Line Interface with project %PROJECT_NAME%
+    echo Startup Application cli environment
     echo.
     echo Options:
     echo      --help, -h        Show more information with UP Command.
