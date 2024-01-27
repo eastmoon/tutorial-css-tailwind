@@ -234,10 +234,11 @@ goto end
     )
 
     @rem execute container
-    docker rm -f css-cli-%PROJECT_NAME%
+    docker rm -f css-app-%PROJECT_NAME%
     docker run -ti --rm ^
         -v %cd%\src\app:/app ^
         -w /app ^
+        -p 8030:3000 ^
         --name css-app-%PROJECT_NAME% ^
         node:20 bash
 
